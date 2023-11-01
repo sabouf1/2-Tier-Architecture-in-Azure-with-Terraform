@@ -1,4 +1,4 @@
-Explanation of the project and information about the variables used in this Terraform configuration:
+Here's a README file for your Git repository that explains the project and provides information about the variables used in your Terraform configuration:
 
 ```markdown
 # Azure 2-Tier Architecture with Terraform
