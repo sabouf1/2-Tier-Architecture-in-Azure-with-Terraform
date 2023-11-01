@@ -1,4 +1,3 @@
-Certainly! Here's an extensive README that provides more details and explanations:
 
 ```markdown
 # Azure 2-Tier Architecture with Terraform
