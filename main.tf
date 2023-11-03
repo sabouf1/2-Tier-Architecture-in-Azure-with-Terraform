@@ -176,4 +176,31 @@ output "load_balancer_public_ip" {
   value = azurerm_public_ip.lb_public_ip.ip_address
 }
 
+#Added File system
 
+resource "random_string" "storage_account_name" {
+  length = 10
+  special = false
+  upper = false
+  number = true
+}
+
+resource "azurerm_storage_account" "stg1" {
+  name                     = "azurestorage${random_string.storage_account_name.result}"
+  resource_group_name      = azurerm_resource_group.rg.name
+  location                 = azurerm_resource_group.rg.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}
+
+resource "azurerm_storage_share" "share1" {
+  name                 = "sharename"
+  storage_account_name = azurerm_storage_account.stg1.name
+  quota                = 50
+}
+
+resource "azurerm_storage_share_file" "example" {
+  name             = "my-awesome-content.zip"
+  storage_share_id = azurerm_storage_share.share1.id
+  source           = "some-local-file.zip"
+}
